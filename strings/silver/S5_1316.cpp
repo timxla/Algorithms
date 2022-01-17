@@ -4,8 +4,7 @@
 
 using namespace std;
 
-bool flag;
-int T;
+int T, j;
 int sav, ans;
 int A[26];
 string str;
@@ -14,7 +13,6 @@ int main()
 {
     cin >> T;
     ans = 0;
-    flag = true;
 
     for (int i = 0; i < T; ++i)
     {
@@ -29,7 +27,7 @@ int main()
         sav = str[0] - 97;
         A[sav]++;
 
-        for (int j = 1; j < str.length(); ++j)
+        for (j = 1; j < str.length(); ++j)
         {
             int digit = str[j]-97;
             if (A[digit] == 0)
@@ -46,14 +44,13 @@ int main()
                 }
                 else
                 {
-                    flag = false;
+                    break;
                 }
             }
         }
-        if (flag)
+        if (j == str.length())
         {
             ans++;
-            flag = true;
         }
     }
     cout << ans << endl;
