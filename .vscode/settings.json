@@ -1,6 +1,20 @@
 {
     "C_Cpp.errorSquiggles": "Enabled",
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "__config": "cpp",
+        "__locale": "cpp",
+        "chrono": "cpp",
+        "ctime": "cpp",
+        "iterator": "cpp",
+        "locale": "cpp",
+        "*.tcc": "cpp",
+        "limits": "cpp",
+        "numeric": "cpp",
+        "ratio": "cpp",
+        "streambuf": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp"
     }
 }
