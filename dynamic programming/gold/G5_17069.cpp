@@ -2,14 +2,16 @@
 #include <algorithm>
 #include <cstring>
 #define endl '\n'
-#define MAX 17
+#define MAX 36
+#define ll long long
 
 using namespace std;
 
-int N, answer;
+int N;
+ll answer;
 int MAP[MAX][MAX];
 // dp[x][y][position]
-int dp[MAX][MAX][3];
+ll dp[MAX][MAX][3];
 
 int a[] = {0, 1, 1};
 int b[] = {1, 1, 0};
@@ -36,23 +38,22 @@ bool check(int row, int col, int pos)
     return true;
 }
 
-void solved(int row, int col, int pos)
+ll solved(int row, int col, int pos)
 {
+    ll value = 0;
 
     if (row == N && col == N)
     {
-        answer++;
-        return;
+        return 1;
     }
 
     // There is no path
-    else if (row > N || col > N) return;
+    else if (row > N || col > N) return 0;
 
-    int &ret = dp[row][col][pos];
+    ll &ret = dp[row][col][pos];
     if (ret != -1)
     {
-        answer += ret;
-        return;
+        return ret;
     }
 
     // If current position is horizontal
@@ -62,7 +63,7 @@ void solved(int row, int col, int pos)
         {
             if (check(row, col, k))
             {
-                solved(row + a[k], col + b[k], k);
+                value += solved(row + a[k], col + b[k], k);
             }
         }
     }
@@ -74,7 +75,7 @@ void solved(int row, int col, int pos)
         {
             if (check(row, col, k))
             {
-                solved(row + a[k], col + b[k], k);
+                value += solved(row + a[k], col + b[k], k);
             }
         }
     }
@@ -86,10 +87,12 @@ void solved(int row, int col, int pos)
         {
             if (check(row, col, k))
             {
-                solved(row + a[k], col + b[k], k);
+                value += solved(row + a[k], col + b[k], k);
             }
         }
     }
+    ret = value;
+    return ret;
 }
 
 int main()
@@ -105,7 +108,7 @@ int main()
     }
 
     memset(dp, -1, sizeof(dp));
-    solved(1, 2, 0);
+    answer = solved(1, 2, 0);
     cout << answer << endl;
     
     return 0;
